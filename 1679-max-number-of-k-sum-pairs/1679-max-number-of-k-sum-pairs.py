@@ -4,22 +4,16 @@ class Solution:
         hashmp = {}
         
         for num in nums:
-            if k - num in hashmp:
+            if hashmp.get(k - num):
                 count += 1
-                if hashmp[k - num] > 1:
-                    hashmp[k - num] -= 1
-                else:
-                    del hashmp[k - num]
-            
+                hashmp[k - num] -= 1
+        
             else:
                 hashmp[num] = hashmp.get(num, 0) + 1
         
         return count
         
-        
-        
-        
-        
+  
         
         
 #         nums.sort()
