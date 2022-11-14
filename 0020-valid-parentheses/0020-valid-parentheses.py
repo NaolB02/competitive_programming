@@ -1,32 +1,15 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        hashmap = {'(':')', '[':']', '{':'}'}
         stack = []
-        m = len(s)
         
-        for i in range(m):
-            if s[i] == "(" or s[i] == "{" or s[i] == "[":
-                stack.append(s[i])
-            if len(stack) != 0:
-                if s[i] == ")":
-                    if stack[-1] == "(":
-                        stack.pop()
-                    else:
-                        break
-                elif s[i] == "}":
-                    if stack[-1] == "{":
-                        stack.pop()
-                    else:
-                        break
-                elif s[i] == "]":
-                    if stack[-1] == "[":
-                        stack.pop()
-                    else:
-                        break
+        for char in s:
+            if char in hashmap:
+                stack.append(char)
             else:
+                if stack and char == hashmap[stack.pop()]:
+                    continue
                 return False
-            
-        if len(stack) == 0:
-            return True
-        else:
+        if len(stack) != 0:
             return False
-        
+        return True
