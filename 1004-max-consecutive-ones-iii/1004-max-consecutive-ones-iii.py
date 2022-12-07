@@ -16,4 +16,3 @@ class Solution:
             maxSize = max(maxSize, r - l + 1)
     
         return maxSize
-        
