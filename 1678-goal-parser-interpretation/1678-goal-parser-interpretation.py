@@ -2,7 +2,6 @@ class Solution:
     def interpret(self, command: str) -> str:
         interpreted = ''
         iterator = 0
-        a= 1
         
         while iterator < len(command):
             if command[iterator] == "G":
