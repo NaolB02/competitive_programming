@@ -6,6 +6,7 @@ class Solution:
         last = rowLen * colLen - 1
         
         while first <= last:
+            # mid is the unique 1D number
             mid = (first + last) // 2
             midRow = mid // colLen
             midCol = mid % colLen
