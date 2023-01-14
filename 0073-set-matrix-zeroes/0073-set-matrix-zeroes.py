@@ -3,6 +3,7 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
+        # name lengths
         m, n = len(matrix), len(matrix[0])
         
         # build columns 
