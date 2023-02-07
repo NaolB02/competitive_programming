@@ -5,6 +5,7 @@
 #         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # the reverse linked list
         revHead = None
         cur = revHead
         
