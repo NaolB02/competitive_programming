@@ -4,6 +4,7 @@ class DNode:
         self.val = val
         self.prev = prev
         self.next = next
+        
 class BrowserHistory:
 
     def __init__(self, homepage: str):
