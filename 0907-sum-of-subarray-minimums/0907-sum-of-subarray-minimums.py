@@ -1,9 +1,6 @@
 class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:    
             stack = []
-            # val = 0
-            # next_val = 0
-            # prev_val = 0
             total = 0
             for i in range(len(arr)):
                 while  stack and arr[stack[-1]] >= arr[i]:
