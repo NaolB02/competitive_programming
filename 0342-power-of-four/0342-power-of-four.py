@@ -5,8 +5,4 @@ class Solution:
         while n > num:
             num *= 4
         
-        if n == num:
-            return True
-        
-        else:
-            return False
+        return n == num
