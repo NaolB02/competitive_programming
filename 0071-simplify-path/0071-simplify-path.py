@@ -8,7 +8,7 @@ class Solution:
                 stack.pop()
             
             elif level == "." or not level or level == "..":
-                pass
+                continue
             
             else:
                 stack.append(level)
