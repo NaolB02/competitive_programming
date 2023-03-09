@@ -2,21 +2,16 @@ class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         combinations = []
         
-        def comb(initial, lis, n, k):
-            if len(lis) == k:
-                combinations.append(lis)
+        def get_comb(initial, list1, n, k):
+            list1.append(initial)
+            
+            if len(list1) == k:
+                combinations.append(list1)
                 return
             
-            if initial > n:
-                return
-            
-            #case 1
-            comb(initial + 1, [num for num in lis], n, k)
-            
-            #case 2
-            lis.append(initial)
-            comb(initial + 1, [num for num in lis], n, k)
+            for index in range(initial + 1, n + 1):
+                get_comb(index,[num for num in list1], n, k)
+        for index in range(1,n+1):
+            get_comb(index,[],n,k)
         
-        comb(1, [], n, k)
-    
         return combinations
