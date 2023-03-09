@@ -4,18 +4,19 @@ class Solution:
         
         def comb(initial, lis, n, k):
             if len(lis) == k:
-                combinations.append(lis)
+                combinations.append(lis[:])
                 return
             
             if initial > n:
                 return
             
             #case 1
-            comb(initial + 1, [num for num in lis], n, k)
+            comb(initial + 1, lis, n, k)
             
             #case 2
             lis.append(initial)
-            comb(initial + 1, [num for num in lis], n, k)
+            comb(initial + 1, lis, n, k)
+            lis.pop()
         
         comb(1, [], n, k)
     
