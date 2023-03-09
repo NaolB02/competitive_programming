@@ -2,7 +2,6 @@ class Solution:
     def splitString(self, s: str) -> bool:
                 
         def splitter(i, list1):
-            
             if len(list1) >= 2 and int(list1[-2]) - int(list1[-1]) != 1:
                 return False
             
