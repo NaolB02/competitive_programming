@@ -1,18 +1,7 @@
 class Solution:
     def splitString(self, s: str) -> bool:
-        
-#         def check_consc(arr, n):
-#             if len(arr) <= 1 or len("".join(arr)) != n:
-#                 return False
-            
-#             for i in range(1, len(arr)):
-#                 if int(arr[i - 1]) - int(arr[i]) != 1:
-#                     return False
-            
-#             return True
-        
+                
         def splitter(i, list1):
-            print(list1)
             
             if len(list1) >= 2 and int(list1[-2]) - int(list1[-1]) != 1:
                 return False
