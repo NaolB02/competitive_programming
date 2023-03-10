@@ -10,33 +10,25 @@ class Solution:
         cur_path = []
         
         def backtrack(root):
+            cur_path.append(str(root.val))
+            
             if not root.left and not root.right:
-                cur_path.append(str(root.val))
                 paths.append("->".join(cur_path))
-                cur_path.pop()
-                return
             
             elif not root.left:
-                cur_path.append(str(root.val))
-                backtrack(root.right)
-                cur_path.pop()
-                
+                backtrack(root.right)   
             
             elif not root.right:
-                cur_path.append(str(root.val))
                 backtrack(root.left)
-                cur_path.pop()
             
             else:
                 #case 1 - left
-                cur_path.append(str(root.val))
                 backtrack(root.left)
-                cur_path.pop()
 
                 #case 2 - right
-                cur_path.append(str(root.val))
                 backtrack(root.right)
-                cur_path.pop()
-        
+            
+            cur_path.pop()
+            
         backtrack(root)
         return paths
