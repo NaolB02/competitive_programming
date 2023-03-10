@@ -18,5 +18,3 @@ class Solution:
                 
             if tickets[k] == 0:
                 return time
-            
-        return 0
