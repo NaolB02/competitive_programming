@@ -18,9 +18,10 @@ class Solution:
         slow_ref = slow
         
         while slow_ref:
-            rev_cur = ListNode(slow_ref.val, rev_head)
-            rev_head = rev_cur
-            slow_ref = slow_ref.next
+            slow_ref.next, rev_head, slow_ref = rev_head, slow_ref, slow_ref.next
+            # rev_cur = ListNode(slow_ref.val, rev_head)
+            # rev_head = rev_cur
+            # slow_ref = slow_ref.next
                 
         #find the maximum sum of twins
         while rev_head and head:
