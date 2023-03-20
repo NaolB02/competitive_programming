@@ -5,29 +5,27 @@
 #         self.next = next
 class Solution:
     def pairSum(self, head: Optional[ListNode]) -> int:
-        # find the length
-        n = 0
-        current = head
+        slow, fast = head, head
+        max_sum = 0
+
+        # Get middle of linked list
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
         
-        while current != None:
-            n += 1
-            current = current.next
+        # Reverse from the middle of the linked list
+        rev_head = None
+        slow_ref = slow
         
-        # initialize the array that holds the twins
-        twins = []
-        index = 0
-        current = head
+        while slow_ref:
+            rev_cur = ListNode(slow_ref.val, rev_head)
+            rev_head = rev_cur
+            slow_ref = slow_ref.next
+                
+        #find the maximum sum of twins
+        while rev_head and head:
+            max_sum = max(max_sum, rev_head.val + head.val)
+            rev_head = rev_head.next
+            head = head.next
         
-        # find the twins and store them in twins
-        while current != None:
-            if index < (n // 2):
-                twins.append([current.val, -1])
-            
-            else:
-                twins[(-index) + n - 1][1] = current.val
-            
-            current = current.next
-            index += 1
-        
-        max_sum = sum(max(twins, key=lambda x: sum(x)))
         return max_sum
