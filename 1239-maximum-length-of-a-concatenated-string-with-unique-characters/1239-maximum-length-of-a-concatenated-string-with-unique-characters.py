@@ -1,18 +1,20 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
         res = 0
-        def dfs(ind, arr, path):
+        path = []
+        def dfs(ind):
             nonlocal res
-            if len(set("".join(path))) == len("".join(path)):
-                res = max(res, len("".join(path)))
+            joined_path = "".join(path)
+            if len(set(joined_path)) == len(joined_path):
+                res = max(res, len(joined_path))
                 
             for i in range(ind + 1, len(arr)):
                 if len(set(arr[i])) == len(arr[i]):
                     path.append(arr[i])
-                    dfs(i, arr, path)
+                    dfs(i)
                     path.pop()
                     
-        dfs(-1, arr, [])
+        dfs(-1)
         return res
                     
         
