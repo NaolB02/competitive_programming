@@ -1,66 +1,31 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
-        res = 0
-        path = []
-        def dfs(ind):
-            nonlocal res
-            joined_path = "".join(path)
-            if len(set(joined_path)) == len(joined_path):
-                res = max(res, len(joined_path))
+        counter = [0]*26
+        ans = 0
+        
+        def dfs(idx, cnt):
+            nonlocal ans
+            for i in range(26):
+                if counter[i] > 1:
+                    return
+            
+            if idx == len(arr):
+                ans = max(ans, cnt)
+                return
                 
-            for i in range(ind + 1, len(arr)):
-                if len(set(arr[i])) == len(arr[i]):
-                    path.append(arr[i])
-                    dfs(i)
-                    path.pop()
-                    
-        dfs(-1)
-        return res
-                    
+            # choose logic
+            for char in arr[idx]:
+                counter[ord(char) - 97] += 1
+            
+            dfs(idx + 1, cnt + len(arr[idx]))
+            
+            for char in arr[idx]:
+                counter[ord(char) -97] -= 1
+            
+            # not choose logic
+            
+            dfs(idx + 1, cnt)
         
-#         def check_unity(di):
-#             for key in di:
-#                 if di[key] > 1:
-#                     return False
-#             return True
-        
-#         max_sub = 0
-#         n = len(arr)
-#         let_dict = defaultdict(int)
-        
-#         def backtrack(i, string):
-#             nonlocal max_sub
+        dfs(0, 0)
+        return ans
             
-#             if len(let_dict) == len(string):
-#                 max_sub = max(len(let_dict), max_sub)
-            
-#             else:
-#                 return
-            
-#             if i == n:
-#                 return
-            
-#             # case - 1
-#             word = arr[i]
-            
-#             for letter in word:
-#                 let_dict[letter] += 1
-            
-#             temp = string
-#             string += word
-
-#             backtrack(i + 1, string)
-            
-#             string = temp
-
-#             for letter in word:
-#                 let_dict[letter] -= 1
-                
-#                 if let_dict[letter] <= 0:
-#                     del let_dict[letter]
-            
-#             # case - 2
-#             backtrack(i + 1, string)
-            
-#         backtrack(0, '')
-#         return max_sub
