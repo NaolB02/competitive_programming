@@ -10,10 +10,10 @@ class Solution:
         n = len(arr)
         let_dict = defaultdict(int)
         
-        def backtrack(i):
+        def backtrack(i, string):
             nonlocal max_sub
             
-            if check_unity(let_dict):
+            if len(let_dict) == len(string):
                 max_sub = max(len(let_dict), max_sub)
             
             else:
@@ -27,8 +27,13 @@ class Solution:
             
             for letter in word:
                 let_dict[letter] += 1
+            
+            temp = string
+            string += word
 
-            backtrack(i + 1)
+            backtrack(i + 1, string)
+            
+            string = temp
 
             for letter in word:
                 let_dict[letter] -= 1
@@ -37,7 +42,7 @@ class Solution:
                     del let_dict[letter]
             
             # case - 2
-            backtrack(i + 1)
+            backtrack(i + 1, string)
             
-        backtrack(0)
+        backtrack(0, '')
         return max_sub
