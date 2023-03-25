@@ -22,6 +22,8 @@ class Solution:
             if rabbit == tortoise:
                 break
         
+        # alternative code: else: return None
+        
         # phase - 2
         tortoise = head
         while rabbit and tortoise and rabbit != tortoise:
