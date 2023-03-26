@@ -18,12 +18,10 @@ class Solution:
         return i + 2
         '''
         
-        freq = [0] * (len(nums) + 1)
+        missing = 1
+        nums.sort()
         
         for num in nums:
-            if num > 0 and num < len(nums) + 1:
-                freq[num - 1] += 1
+            missing += missing == num
         
-        for i in range(len(freq)):
-            if freq[i] == 0:
-                return i + 1
+        return missing
