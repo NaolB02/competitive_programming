@@ -3,10 +3,11 @@ class Solution:
         differences = [nums1[i] - nums2[i] for i in range(len(nums1))]
         count = 0
         
+        # merge sort with a little modification
         def merge(left_half, right_half):
             nonlocal count
             
-            # find the possible pairs
+            # find the possible pairs before merging comparing the right and left halves
             right_diff = [right_half[i] + diff for i in range(len(right_half))]
             for i in range(len(left_half)):
                 index = bisect_left(right_diff, left_half[i])
