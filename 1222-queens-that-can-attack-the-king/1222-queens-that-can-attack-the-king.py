@@ -65,6 +65,7 @@ class Solution:
                     
                     if cur_dist < prev_dist: positions['down-left'] = [x, y]
         
+        # add the valid pairs to the new nums list
         for x, y in positions.values():
             if x < 8 and y < 8:
                 new_nums.append([x, y])
