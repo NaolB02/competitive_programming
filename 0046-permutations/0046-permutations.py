@@ -2,22 +2,27 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         permutations = []
         cur_per = []
-        visited = set()
+        visited = (2 ** 6) - 1
         
         def backtrack():
+            nonlocal visited
             if len(cur_per) == len(nums):
                 permutations.append(cur_per[:])
                 return
             
-            for num in nums:
-                if num not in visited:
-                    visited.add(num)
-                    cur_per.append(num)
+            for i in range(len(nums)):
+                off_on = (visited >> i) & 1
+                
+                if off_on:
+                    turn_off = 1 << i
+                    visited ^= turn_off
+                    cur_per.append(nums[i])
                     
                     backtrack()
                     
                     cur_per.pop()
-                    visited.remove(num)
+                    turn_off = 1 << i
+                    visited |= turn_off
             return
     
         backtrack()
