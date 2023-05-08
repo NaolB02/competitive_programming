@@ -1,34 +1,56 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        dependencies = defaultdict(int)
-        graph = defaultdict(list)
+        dependencies = [0] * numCourses
+        graph = {i: [] for i in range(numCourses)}
+        color = {i: 'w' for i in range(numCourses)}
         
-        for i in range(numCourses):
-            graph[i]
-            dependencies[i]
+        
+#         for i in range(numCourses):
+#             graph[i]
+#             dependencies[i]
             
         for cur, pre in prerequisites:
             graph[pre].append(cur)
             dependencies[cur] += 1
         
-        frontier = deque()
+        components = []
         for node in graph:
             if dependencies[node] == 0:
-                frontier.append(node)
+                components.append(node)
         
-        topo_order = []
-        while frontier:
-            node = frontier.popleft()
+        stack = []
+        isCyclic = False
+        def dfs(node):
+            nonlocal isCyclic
             
+            if color[node] == 'b':
+                return
+            
+            if color[node] == 'g':
+                isCyclic = True
+                return
+            
+            if len(graph[node]) == 0:
+                color[node] = 'b'
+                stack.append(node)
+                return True
+            
+            color[node] = 'g'
             for neigh in graph[node]:
-                dependencies[neigh] -= 1
+                dfs(neigh)
                 
-                if dependencies[neigh] == 0:
-                    frontier.append(neigh)
+                if isCyclic:
+                    return
             
-            topo_order.append(node)
-            # del graph[node]
-        
-        if len(topo_order) != numCourses:
+            color[node] = 'b'  
+            stack.append(node)
+            
+        # print('frontier: ', frontier)
+        for node in components:
+            dfs(node)
+            # print(graph, color)
+            
+        if len(stack) != numCourses:
             return []
-        return topo_order
+        
+        return stack[::-1]
