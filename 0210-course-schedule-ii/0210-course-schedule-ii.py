@@ -27,7 +27,7 @@ class Solution:
                     frontier.append(neigh)
             
             topo_order.append(node)
-            del graph[node]
+            # del graph[node]
         
         if len(topo_order) != numCourses:
             return []
